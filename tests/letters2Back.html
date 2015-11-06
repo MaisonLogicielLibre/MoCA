@@ -5,7 +5,8 @@
     <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
     <script src="../bower_components/jsPsych/jspsych.js"></script>
     <script src="../bower_components/jsPsych/plugins/jspsych-text.js"></script>
-    <script src="../bower_components/jsPsych/plugins/jspsych-single-stim.js"></script>
+    <!--<script src="../bower_components/jsPsych/plugins/jspsych-single-stim.js"></script>-->
+    <script src="jspsych-single-stim.js"></script>
     <script src="../plugins/tutorial1.js"></script>
     <link rel="stylesheet" href="../bower_components/jquery-ui/themes/base/jquery-ui.min.css"/>
     <link rel="stylesheet" href="../bower_components/jsPsych/css/jspsych.css"/>
@@ -42,6 +43,7 @@
     /* define welcome message block */
     var welcome_block = {
       type: "text",
+      cont_key: 'mouse',
       text: "Next, you will do another kind of memory test. Pay close attention to the instructions." +
       "You will be shown a series of letters, one at a time in the middle of the screen." +
       " When each letter appears, you must decide if it is the same letter you saw exactly 2 letters before." +
