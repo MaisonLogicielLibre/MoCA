@@ -4,10 +4,8 @@
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
     <script src="../bower_components/jsPsych/jspsych.js"></script>
-    <script src="../bower_components/jsPsych/plugins/jspsych-text.js"></script>
-    <!--<script src="../bower_components/jsPsych/plugins/jspsych-single-stim.js"></script>-->
-    <script src="jspsych-single-stim.js"></script>
-    <script src="../plugins/tutorial1.js"></script>
+    <script src="../plugins/jspsych-text-modified.js"></script>
+    <script src="../plugins/jspsych-single-stim-modified.js"></script>
     <link rel="stylesheet" href="../bower_components/jquery-ui/themes/base/jquery-ui.min.css"/>
     <link rel="stylesheet" href="../bower_components/jsPsych/css/jspsych.css"/>
     <style>
@@ -43,16 +41,17 @@
     /* define welcome message block */
     var welcome_block = {
       type: "text",
-      cont_key: 'mouse',
+      mouse:true,
       text: "Next, you will do another kind of memory test. Pay close attention to the instructions." +
       "You will be shown a series of letters, one at a time in the middle of the screen." +
       " When each letter appears, you must decide if it is the same letter you saw exactly 2 letters before." +
-      "<p>Press any key to begin.</p>"
+      "<p>Press any KEY or CLICK to begin.</p>"
     };
     var practice_block = {
         type: "text",
+        mouse:true,
         text: "If the letter you are looking at is the SAME as the letter you saw" +
-        " 2 letters before,  press the SPACEBAR. If it is not the same, do nothing." +
+        " 2 letters before,  press the SPACEBAR or CLICK. If it is not the same, do nothing." +
         " Here is an example of a sequence of letters you might see. To help you understand" +
         " we have shown them all in a row, but in the test, they will appear one at a time.<br>" +
         ' <img src="img/example.bmp" alt="example" style="width:80%;height:30%;">'+
@@ -60,21 +59,12 @@
         "because it is the SAME letter that appeared 2 letters back. " +
         " You would not press the spacebar for the other letters; each one of them was different than" +
         " the letter that appeared 2 letters before it. Are you ready for some practice?"+
-        "<p>Press any key to begin.</p>"
+        "<p>Press any KEY or CLICK to begin.</p>"
     };
 
     var post_trial_gap = function() {
       return Math.floor( Math.random() * 1500 ) + 750;
     }
-
-/*    var test_block = {
-      type: "single-stim",
-      stimuli: all_trials.image,
-      choices: ['F'],
-      data: all_trials.data,
-      timing_response: 1500,
-      timing_post_trial: post_trial_gap
-    };*/
 
     trialLetters = [];
     trialAnswers = [];
@@ -95,21 +85,21 @@ trialLetters.push('<span class="largeText">a</span>');trialAnswers.push(true);
     is_html: true,
     timing_response: 2000,
         choices: [' '], // space bar
+        mouse: true,
     response_ends_trial: false
 };
-
     /* define debrief block */
 
     function getAverageResponseTime() {
         var trials = jsPsych.data.getTrialsOfType('single-stim');
         var sum_rt = 0;
         var valid_trial_count = 0;
-        for (var i = 0; i < trials.length; i++) {
-            if (trials[i].key_press == 32 && trials[i].rt > -1 ) {
-                sum_rt += trials[i].rt;
+        trials.forEach(function (stim) {
+            if ((stim.key_press == 32|stim.key_press == 'mouse') && stim.rt > -1 ) {
+                sum_rt += stim.rt;
                 valid_trial_count++;
             }
-        }
+        });
         return Math.floor(sum_rt / valid_trial_count);
     }
     function validateAnswers() {
@@ -121,7 +111,7 @@ trialLetters.push('<span class="largeText">a</span>');trialAnswers.push(true);
         };
         var i =0;
         trials.forEach(function (stim) {
-                if (stim.key_press == 32) { // space bar
+                if (stim.key_press == 32 || stim.key_press == 'mouse' ) { // space bar
                     if(trialAnswers[i]) {
                         resp.correct++;
                     } else {

@@ -32,6 +32,7 @@
 				// optional parameters
 				trials[i].is_html = (typeof params.is_html === 'undefined') ? false : params.is_html;
 				trials[i].prompt = (typeof params.prompt === 'undefined') ? "" : params.prompt;
+				trials[i].mouse = params.mouse;
 			}
 			return trials;
 		};
@@ -79,9 +80,7 @@
 				}
 
 				// kill keyboard listeners
-				if (keyboardListener) {
-					jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
-				}
+				jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
 
 				// gather the data to store for the trial
 				var trial_data = {
@@ -121,21 +120,9 @@
 					end_trial();
 				} 
 			};
-			var keyboardListener = null;
-			var mouse_listener = function(e) {
-				var rt = (new Date()).getTime() - start_time;
-				display_element.unbind('click', mouse_listener);
-				after_response({key: 'mouse', rt: rt});
-			};
 
-			// check if key is 'mouse'
-			if (trial.cont_key == 'mouse') {
-				display_element.click(mouse_listener);
-				var start_time = (new Date()).getTime();
-			} else {
-				// start the response listener
-				var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse(after_response, trial.choices);
-			}
+			// start the response listener
+			var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse(after_response, trial.choices);
 
 			// hide image if timing is set
 			if (trial.timing_stim > 0) {
@@ -152,9 +139,17 @@
 				}, trial.timing_response);
 				setTimeoutHandlers.push(t2);
 			}
-
+            var mouse_listener = function(e) {
+                var rt = (new Date()).getTime() - start_time;
+                $(display_element.selector).html('mouse press rt ='+rt);
+                after_response({key: 'mouse', rt: rt});
+            };
+			// check if  'mouse' entry is on
+			if (trial.mouse) {
+				$(display_element.selector).unbind().click(mouse_listener);
+				var start_time = (new Date()).getTime();
+			}
 		};
-
 		return plugin;
 	})();
 })(jQuery);

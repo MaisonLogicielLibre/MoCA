@@ -9,7 +9,7 @@ Plugins provide a structure for a particular task. For example, the `jspsych-sin
 To use a plugin, you'll need to load the plugin's JavaScript file on your experiment page:
 
 ```html
-<script src="jspsych/plugins/jspsych-single-stim.js" type="text/javascript"></script>
+<script src="jspsych/plugins/jspsych-single-stim-modified.js" type="text/javascript"></script>
 ```
 
 Once a plugin is loaded, you can define a block that uses that plugin. The following JavaScript code defines a trial using the `jspsych-single-stim` plugin to display an image file ('images/happy_face.jpg'). This trial uses the default values for valid keys, length of display, and so on. You could override these values by adding them to the object.

@@ -181,7 +181,7 @@ First, to use a plugin we need to load it in the `<head>` section of the experim
 ```html
 <head>
   ...
-  <script src="jsPsych-4.0/plugins/jspsych-single-stim.js"></script>
+  <script src="jsPsych-4.0/plugins/jspsych-single-stim-modified.js"></script>
   ...
 </head>
 ```
@@ -217,7 +217,7 @@ experiment.push(test_block);
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="jsPsych-4.0/jspsych.js"></script>
     <script src="jsPsych-4.0/plugins/jspsych-text.js"></script>
-    <script src="jsPsych-4.0/plugins/jspsych-single-stim.js"></script>
+    <script src="jsPsych-4.0/plugins/jspsych-single-stim-modified.js"></script>
     <link href="jsPsych-4.0/css/jspsych.css" rel="stylesheet" type="text/css"></link>
   </head>
   <body>
@@ -312,7 +312,7 @@ If you are wondering where to figure out what the various parameter options for 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="jsPsych-4.0/jspsych.js"></script>
     <script src="jsPsych-4.0/plugins/jspsych-text.js"></script>
-    <script src="jsPsych-4.0/plugins/jspsych-single-stim.js"></script>
+    <script src="jsPsych-4.0/plugins/jspsych-single-stim-modified.js"></script>
     <link href="jsPsych-4.0/css/jspsych.css" rel="stylesheet" type="text/css"></link>
   </head>
   <body>
@@ -404,7 +404,7 @@ Now our experiment is 20 trials long, and the trials are shown in a random order
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="jsPsych-4.0/jspsych.js"></script>
     <script src="jsPsych-4.0/plugins/jspsych-text.js"></script>
-    <script src="jsPsych-4.0/plugins/jspsych-single-stim.js"></script>
+    <script src="jsPsych-4.0/plugins/jspsych-single-stim-modified.js"></script>
     <link href="jsPsych-4.0/css/jspsych.css" rel="stylesheet" type="text/css"></link>
   </head>
   <body>
@@ -485,7 +485,7 @@ jsPsych.init({
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="jsPsych-4.0/jspsych.js"></script>
     <script src="jsPsych-4.0/plugins/jspsych-text.js"></script>
-    <script src="jsPsych-4.0/plugins/jspsych-single-stim.js"></script>
+    <script src="jsPsych-4.0/plugins/jspsych-single-stim-modified.js"></script>
     <link href="jsPsych-4.0/css/jspsych.css" rel="stylesheet" type="text/css"></link>
   </head>
   <body>
@@ -595,7 +595,7 @@ var test_block = {
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="jsPsych-4.0/jspsych.js"></script>
     <script src="jsPsych-4.0/plugins/jspsych-text.js"></script>
-    <script src="jsPsych-4.0/plugins/jspsych-single-stim.js"></script>
+    <script src="jsPsych-4.0/plugins/jspsych-single-stim-modified.js"></script>
     <link href="jsPsych-4.0/css/jspsych.css" rel="stylesheet" type="text/css"></link>
   </head>
   <body>
@@ -705,7 +705,7 @@ If you run the experiment, you'll notice that the interval between trials change
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="jsPsych-4.0/jspsych.js"></script>
     <script src="jsPsych-4.0/plugins/jspsych-text.js"></script>
-    <script src="jsPsych-4.0/plugins/jspsych-single-stim.js"></script>
+    <script src="jsPsych-4.0/plugins/jspsych-single-stim-modified.js"></script>
     <link href="jsPsych-4.0/css/jspsych.css" rel="stylesheet" type="text/css"></link>
   </head>
   <body>
@@ -831,7 +831,7 @@ experiment.push(debrief_block);
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="jsPsych-4.0/jspsych.js"></script>
     <script src="jsPsych-4.0/plugins/jspsych-text.js"></script>
-    <script src="jsPsych-4.0/plugins/jspsych-single-stim.js"></script>
+    <script src="jsPsych-4.0/plugins/jspsych-single-stim-modified.js"></script>
     <link href="jsPsych-4.0/css/jspsych.css" rel="stylesheet" type="text/css"></link>
   </head>
   <body>

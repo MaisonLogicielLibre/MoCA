@@ -20,7 +20,7 @@ To use jsPsych, you'll need to load a few JavaScript files in an HTML document. 
 	<head>
 		<script src="js/jquery.js"></script>
 		<script src="js/jspsych/jspsych.js"></script>
-		<script src="js/jspsych/plugins/jspsych-single-stim.js"></script>
+		<script src="js/jspsych/plugins/jspsych-single-stim-modified.js"></script>
 	</head>
 	<body>
 	</body>
