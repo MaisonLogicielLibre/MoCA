@@ -80,7 +80,9 @@
 				}
 
 				// kill keyboard listeners
-				jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
+				if (keyboardListener) {
+					jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
+				}
 
 				// gather the data to store for the trial
 				var trial_data = {
@@ -106,7 +108,7 @@
 			
 			// function to handle responses by the subject
 			var after_response = function(info) {
-
+				$(display_element.selector).unbind();
 				// after a valid response, the stimulus will have the CSS class 'responded'
 				// which can be used to provide visual feedback that a response was recorded
 				$("#jspsych-single-stim-stimulus").addClass('responded');
@@ -120,9 +122,6 @@
 					end_trial();
 				} 
 			};
-
-			// start the response listener
-			var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse(after_response, trial.choices);
 
 			// hide image if timing is set
 			if (trial.timing_stim > 0) {
@@ -144,10 +143,14 @@
                 $(display_element.selector).html('mouse press rt ='+rt);
                 after_response({key: 'mouse', rt: rt});
             };
+			var keyboardListener = false;
 			// check if  'mouse' entry is on
 			if (trial.mouse) {
 				$(display_element.selector).unbind().click(mouse_listener);
 				var start_time = (new Date()).getTime();
+			} else {
+				// start the response listener
+				keyboardListener = jsPsych.pluginAPI.getKeyboardResponse(after_response, trial.choices);
 			}
 		};
 		return plugin;

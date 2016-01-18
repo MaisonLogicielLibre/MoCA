@@ -1,0 +1,33 @@
+/*
+ * CSS for MoCA experiments.
+ *
+ * This stylesheet provides minimal styling to make jsPsych
+ * experiments look polished without any additional styles.
+ *
+ */
+
+/*
+ *
+ * fonts and type
+ *
+ */
+
+img { width: 300px; }
+.largeText {
+    font-weight: bold;
+    font-size: 400%;
+}
+.mediumText {
+    font-weight: bold;
+    color: #00b3ee;
+    font-size: 150%;
+}
+.psych_window {
+    color: white;
+    background: black;
+    vertical-align:middle;
+    text-align: center;
+    min-height: 500px;
+    padding: 50px;
+    margin:0 auto;
+}

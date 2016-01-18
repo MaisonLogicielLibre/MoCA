@@ -1,34 +1,16 @@
 <!doctype html>
 <html>
   <head>
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
-    <script src="../bower_components/jsPsych/jspsych.js"></script>
-    <script src="../plugins/jspsych-text-modified.js"></script>
-    <script src="../plugins/jspsych-single-stim-modified.js"></script>
-    <link rel="stylesheet" href="../bower_components/jquery-ui/themes/base/jquery-ui.min.css"/>
-    <link rel="stylesheet" href="../bower_components/jsPsych/css/jspsych.css"/>
-    <style>
-      img { width: 300px; }
-      .largeText {
-          font-weight: bold;
-        font-size: 400%;
-      }
-      .mediumText {
-          font-weight: bold;
-          color: #00b3ee;
-          font-size: 150%;
-      }
-      .psych_window {
-          color: white;
-          background: black;
-          vertical-align:middle;
-          text-align: center;
-          min-height: 500px;
-          padding: 50px;
-          margin:0 auto;
-      }
-    </style>
+      <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+      <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
+      <script src="../bower_components/jsPsych/jspsych.js"></script>
+      <script src="../bower_components/jsPsych/plugins/jspsych-text.js"></script>
+      <script src="../plugins/MoCA-common.js"></script>
+    <!--<script src="../plugins/jspsych-text-modified.js"></script>-->
+      <script src="../plugins/jspsych-single-stim-modified.js"></script>
+      <link rel="stylesheet" href="../bower_components/jquery-ui/themes/base/jquery-ui.min.css"/>
+      <link rel="stylesheet" href="../bower_components/jsPsych/css/jspsych.css"/>
+      <link rel="stylesheet" href="../css/MoCA.css"/>
   </head>
   <body>
     <div class="center-content">
@@ -40,16 +22,16 @@
   <script>
     /* define welcome message block */
     var welcome_block = {
-      type: "text",
-      mouse:true,
-      text: "Next, you will do another kind of memory test. Pay close attention to the instructions." +
-      "You will be shown a series of letters, one at a time in the middle of the screen." +
-      " When each letter appears, you must decide if it is the same letter you saw exactly 2 letters before." +
-      "<p>Press any KEY or CLICK to begin.</p>"
+        type: "text",
+        cont_key: "mouse",
+        text: "Next, you will do another kind of memory test. Pay close attention to the instructions." +
+        "You will be shown a series of letters, one at a time in the middle of the screen." +
+        " When each letter appears, you must decide if it is the same letter you saw exactly 2 letters before." +
+        "<p>Press any KEY or CLICK to begin.</p>"
     };
     var practice_block = {
         type: "text",
-        mouse:true,
+        cont_key: "mouse",
         text: "If the letter you are looking at is the SAME as the letter you saw" +
         " 2 letters before,  press the SPACEBAR or CLICK. If it is not the same, do nothing." +
         " Here is an example of a sequence of letters you might see. To help you understand" +
@@ -89,46 +71,6 @@ trialLetters.push('<span class="largeText">a</span>');trialAnswers.push(true);
     response_ends_trial: false
 };
     /* define debrief block */
-
-    function getAverageResponseTime() {
-        var trials = jsPsych.data.getTrialsOfType('single-stim');
-        var sum_rt = 0;
-        var valid_trial_count = 0;
-        trials.forEach(function (stim) {
-            if ((stim.key_press == 32|stim.key_press == 'mouse') && stim.rt > -1 ) {
-                sum_rt += stim.rt;
-                valid_trial_count++;
-            }
-        });
-        return Math.floor(sum_rt / valid_trial_count);
-    }
-    function validateAnswers() {
-        var trials = jsPsych.data.getTrialsOfType('single-stim');
-        var resp = {
-            correct:0,
-            incorrect:0,
-            missed:0
-        };
-        var i =0;
-        trials.forEach(function (stim) {
-                if (stim.key_press == 32 || stim.key_press == 'mouse' ) { // space bar
-                    if(trialAnswers[i]) {
-                        resp.correct++;
-                    } else {
-                        resp.incorrect++;
-                    }
-                } else if(trialAnswers[i]) { // they missed a letter 2 back match
-                    resp.missed++;
-                }
-                i++;
-        });
-        return resp;
-    }
-
-    function validateAnswersString() {
-        var resp = validateAnswers();
-        return "Correct = "+  resp.correct + " incorrectly identified = "+resp.incorrect + " missed = "+resp.missed;
-    }
 
     var debrief_block = {
       type: "text",
